@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Build list of Whitelabel Colors</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/global.js"></script>
+
+	<style>
+
+		table {
+			table-layout: fixed;
+		}
+
+		th, td {
+			white-space: nowrap;
+			vertical-align: middle !important;
+			overflow: hidden;
+			text-transform: uppercase;
+		}
+
+		th {
+			background-color: #757b7f;
+			color: #ffffff;
+		}
+
+		.sprite, .font_family, .name, .login_logo, .favicon {
+			display: none;
+		}
+
+		img {
+			height: 30px;
+		}
+	</style>
+</head>
+<body>
+
+<div>
+	<header>
+		<h1>All WL Files</h1>
+	</header>
+	<table class="table table-bordered"></table>
+</div>
+
+</body>
+</html>

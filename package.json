@@ -1,0 +1,19 @@
+{
+  "name": "whitelabel-colors",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Dan Hahn <dhahn@appnexus.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-bower-files": "^0.2.7",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-uglify": "^1.0.1",
+    "gulp-usemin": "^0.3.8"
+  }
+}

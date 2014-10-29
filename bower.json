@@ -1,0 +1,16 @@
+{
+  "name": "whitelabel-colors",
+  "version": "0.1",
+  "authors": [
+    "Dan Hahn <dhahn@appnexus.com>"
+  ],
+  "description": "List out all colors in whitelabel.ini",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
