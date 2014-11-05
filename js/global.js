@@ -3,6 +3,8 @@ $(function() {
 	var userSettings = "; ===== DO NOT REMOVE THIS SECTION ONLY EDIT YOUR OWN SETTINGS ======";
 	var defaultSettings = "isConsole = false";
 
+	var linkcolor = [];
+
 	var $row = $('<tr>');
 
 	var $rowTemplate = $("<tr>");
@@ -35,7 +37,7 @@ $(function() {
 				.addClass(title)
 				.html(title)
 				.appendTo($row);
-			$("<td>")
+			var $td = $("<td>")
 				.addClass(title)
 				.html(value)
 				.appendTo($row2);
@@ -44,6 +46,32 @@ $(function() {
 				.html('n/a')
 				.css("color", "lightgray")
 				.appendTo($rowTemplate);
+
+
+
+			if(value.indexOf("/images/") == 0) {
+				$td.html(
+					'<img src="https://dhahn.devnxs.net'+ value +'">'
+				);
+			}
+
+			if(value.indexOf("#") == 0) {
+				$td.css("background-color", value)
+			}
+
+			if(value.indexOf("rgb") == 0) {
+				$td.css({
+					"background-color" : value
+				})
+			}
+
+			if (value == "AppNexus Console") {
+				console.log(value)
+				$row2.find('.cname').html(
+					'<a href="http://dhahn.devnxs.net/v2/advertiser?whitelabel=default" target="new-window">default</a>'
+				);
+			}
+
 		};
 
 		$row.appendTo('table');
@@ -59,14 +87,20 @@ $(function() {
 
 			var $nr = $rowTemplate.clone();
 
+			var lessColors = Object.create(null);
+
 			var list = getData[i].match(/[^\r\n]+/g);
 			for (var j = 0; j < list.length; j++) {
 				var item = list[j];
+
+
 
 				if(item.indexOf(";") ==0) {
 					continue;
 				}
 				else if (item.indexOf("[") == 0) {
+
+					lessColors.cnmae = getWlName(item)[0];
 
 					$nr.find(".cname").html(
 						'<a href="http://dhahn.devnxs.net/v2/advertiser?whitelabel='+ getWlName(item)[0] +'" target="new-window">'+ getWlName(item)[0] +'</a>'
@@ -85,6 +119,11 @@ $(function() {
 						"font-weight": "bold",
 						"color" : "#333"
 					});
+
+					if(colName == ".link_color") {
+						lessColors.color = items;
+					}
+
 					if(items.indexOf("#") == 0) {
 						$find.css("background-color", items)
 					}
@@ -101,9 +140,27 @@ $(function() {
 					}
 				}
 			}
-			$nr.appendTo("table")
+			$nr.appendTo("table");
+			linkcolor.push(lessColors);
 		}
+		buildLess(linkcolor);
 	};
+
+	var buildLess = function(data) {
+		var lessData ="";
+		for(var i = 0; i < data.length; i++) {
+			if(data[i].color){
+				var buildLess =  "." + data[i].cnmae + "{\r" +
+					"link-color: " + data[i].color + ";\r" +
+					"link-color2: lighten(" + data[i].color + ", 10%);\r"+
+					"link-color3: lighten(" + data[i].color + ", 20%);}\r";
+
+			}
+
+			lessData += buildLess;
+		}
+
+	}
 
 	var getWlName = function(data) {
 		return data
